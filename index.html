@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promoció-Digital</title>
+    <link rel="icon" href="rectangle-ad-solid.svg">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        html{
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0077b6, #00b4d8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 10px;
+        }
+
+        .logo-container a {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .logo-calagogo {
+            max-width: 380px;
+            height: 150;
+        }
+
+        .logo-j23 {
+            max-width: 180px;
+            height: auto;
+        }
+
+        .logo-container img {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .logo-container img:hover {
+            transform: scale(1.1);
+        }
+
+        .reviews-section {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .reviews-section h2 {
+            color: #0077b6;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            font-size: 0.9em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        button {
+            padding: 10px 16px;
+            font-size: 1em;
+            background-color: #0077b6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #00b4d8;
+        }
+
+        .review-list {
+            margin-top: 20px;
+        }
+
+        .review-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #e3f2fd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .review-item h3 {
+            color: #0077b6;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Promoció-Digital</h1>
+        <div class="logo-container">
+            <a href="./calagogo.html">
+                <img src="ccalagogo.png" alt="Logo Calagogo" class="logo-calagogo">
+            </a>
+            <a href="./j23.html">
+                <img src="j23airlines.png" alt="Logo J23AIRLINES" class="logo-j23">
+            </a>
+        </div>
+    </header>
+
+    <section class="reviews-section">
+        <h2>Comparte tu experiencia</h2>
+        <div class="form-group">
+            <label for="review-title">Servicio</label>
+            <input type="text" id="review-title" placeholder="Escribe un título">
+        </div>
+        <div class="form-group">
+            <label for="review-content">Reseña</label>
+            <textarea id="review-content" rows="4" placeholder="Escribe tu reseña"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="review-author">Tu nombre</label>
+            <input type="text" id="review-author" placeholder="Tu nombre o seudónimo">
+        </div>
+        <div class="form-group">
+            <label for="review-rating">Calificación</label>
+            <select id="review-rating">
+                <option value="1">★☆☆☆☆ (1)</option>
+                <option value="2">★★☆☆☆ (2)</option>
+                <option value="3">★★★☆☆ (3)</option>
+                <option value="4">★★★★☆ (4)</option>
+                <option value="5">★★★★★ (5)</option>
+            </select>
+        </div>
+        <button id="submit-review">Publicar Reseña</button>
+        <div class="review-list" id="review-list">
+            <h3>Reseñas de nuestros clientes</h3>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('submit-review').addEventListener('click', function() {
+            const title = document.getElementById('review-title').value.trim();
+            const content = document.getElementById('review-content').value.trim();
+            const author = document.getElementById('review-author').value.trim();
+            const rating = document.getElementById('review-rating').value;
+
+            if (title === '' || content === '' || author === '' || rating === '') {
+                alert('Por favor, completa todos los campos antes de publicar.');
+                return;
+            }
+
+            const reviewList = document.getElementById('review-list');
+            const reviewItem = document.createElement('div');
+            reviewItem.className = 'review-item';
+            reviewItem.innerHTML = `<h3>${title}</h3><p>${content}</p><p><strong>Calificación:</strong> ${'★'.repeat(rating)}${'☆'.repeat(5 - rating)}</p><p><strong>Escrito por:</strong> ${author}</p>`;
+            reviewList.appendChild(reviewItem);
+
+            document.getElementById('review-title').value = '';
+            document.getElementById('review-content').value = '';
+            document.getElementById('review-author').value = '';
+            document.getElementById('review-rating').value = '5';
+        });
+    </script>
+</body>
+</html>
